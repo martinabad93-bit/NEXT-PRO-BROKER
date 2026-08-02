@@ -30,18 +30,37 @@
             
             <form id="pro-form">
                 <div class="form-grid">
+                    <!-- MARCA (Ahora hardcodeada para que siempre funcione) -->
                     <div class="input-group">
                         <label>Marca</label>
                         <select id="marca" onchange="cargarModelosAPI()" required>
                             <option value="" disabled selected>Seleccione la marca...</option>
-                            <!-- Se llenará vía JavaScript -->
+                            <option value="Acura">Acura</option>
+                            <option value="Audi">Audi</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Chevrolet">Chevrolet</option>
+                            <option value="Dodge">Dodge</option>
+                            <option value="Ford">Ford</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Hyundai">Hyundai</option>
+                            <option value="Infiniti">Infiniti</option>
+                            <option value="Jeep">Jeep</option>
+                            <option value="Kia">Kia</option>
+                            <option value="Lexus">Lexus</option>
+                            <option value="Mazda">Mazda</option>
+                            <option value="Mercedes-Benz">Mercedes-Benz</option>
+                            <option value="Nissan">Nissan</option>
+                            <option value="Porsche">Porsche</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Volkswagen">Volkswagen</option>
                         </select>
                     </div>
                     
+                    <!-- MODELO (Se activa por la API) -->
                     <div class="input-group">
-                        <label>Modelo <span id="loading-modelos" class="hidden">Cargando...</span></label>
+                        <label>Modelo <span id="loading-modelos" class="hidden" style="color:var(--primary); font-size:0.8rem;">Cargando...</span></label>
                         <select id="modelo" disabled required>
-                            <option value="" disabled selected>Esperando marca...</option>
+                            <option value="" disabled selected>Seleccione primero la marca...</option>
                         </select>
                     </div>
 
@@ -77,7 +96,6 @@
                 <button type="button" class="btn-submit" onclick="calcularProyeccion()">Procesar Viabilidad y Ahorro</button>
             </form>
 
-            <!-- Panel de Resultados con animaciones -->
             <div id="panel-resultados" class="resultados-grid hidden">
                 <div class="tarjeta-precio dealer scale-in">
                     <h4>Valor Estimado (Dealer RD)</h4>
@@ -99,7 +117,7 @@
 
                 <div class="acciones-cierre scale-in delay-3">
                     <button class="btn-whatsapp" onclick="cerrarVentaWA()"><i class='bx bxl-whatsapp'></i> Solicitar Contrato vía WhatsApp</button>
-                    <button class="btn-stripe"><i class='bx bx-credit-card'></i> Pagar Depósito (Asegurar Búsqueda)</button>
+                    <button class="btn-stripe"><i class='bx bx-credit-card'></i> Pagar Depósito ($200)</button>
                 </div>
             </div>
         </div>
@@ -111,6 +129,125 @@
         </div>
     </footer>
 
-    <script src="app.js"></script>
+    <!-- TODO EL JAVASCRIPT INTEGRADO AQUÍ PARA EVITAR ERRORES DE VINCULACIÓN -->
+    <script>
+        async function cargarModelosAPI() {
+            const marcaSeleccionada = document.getElementById("marca").value;
+            const selectModelo = document.getElementById("modelo");
+            const loadingText = document.getElementById("loading-modelos");
+
+            selectModelo.innerHTML = '<option value="" disabled selected>Seleccione el modelo...</option>';
+            selectModelo.disabled = true;
+
+            if (!marcaSeleccionada) return;
+
+            loadingText.classList.remove("hidden");
+
+            try {
+                // Llamada a la API pública de NHTSA
+                const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${marcaSeleccionada}?format=json`);
+                const data = await response.json();
+
+                const modelos = data.Results.map(item => item.Model_Name).sort();
+                const modelosUnicos = [...new Set(modelos)];
+
+                modelosUnicos.forEach(modelo => {
+                    let opt = document.createElement("option");
+                    opt.value = modelo;
+                    opt.textContent = modelo.charAt(0).toUpperCase() + modelo.slice(1).toLowerCase();
+                    selectModelo.appendChild(opt);
+                });
+
+                // Corrección especial para agregar el modelo Q50s si la API no lo trae detallado
+                if(marcaSeleccionada === "Infiniti") {
+                     let optQ50s = document.createElement("option");
+                     optQ50s.value = "Q50s";
+                     optQ50s.textContent = "Q50s";
+                     selectModelo.insertBefore(optQ50s, selectModelo.children[1]);
+                }
+
+                selectModelo.disabled = false;
+            } catch (error) {
+                console.error("Error cargando modelos de la API:", error);
+                selectModelo.innerHTML = '<option value="" disabled>Error de red. Escriba el modelo en WhatsApp.</option>';
+                selectModelo.disabled = false;
+            } finally {
+                loadingText.classList.add("hidden");
+            }
+        }
+
+        function calcularProyeccion() {
+            const marca = document.getElementById("marca").value;
+            const modelo = document.getElementById("modelo").value;
+            const anio = document.getElementById("anio").value;
+            const presupuestoInput = document.getElementById("presupuesto").value;
+
+            if (!marca || !modelo || !anio || !presupuestoInput) {
+                alert("Por favor completa todos los campos (Marca, Modelo, Año y Presupuesto).");
+                return;
+            }
+
+            const presupuesto = parseFloat(presupuestoInput);
+            const margenDealer = 1.18; // Simulando 18% de sobreprecio en el mercado local
+            const precioCalleRD = presupuesto * margenDealer;
+            const ahorroCalculado = precioCalleRD - presupuesto;
+
+            animarContador("precio-local", precioCalleRD);
+            animarContador("precio-broker", presupuesto);
+            animarContador("monto-ahorro", ahorroCalculado, " USD");
+
+            const panel = document.getElementById("panel-resultados");
+            panel.classList.remove("hidden");
+            void panel.offsetWidth; 
+            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function animarContador(id, valorFinal, sufijo = "") {
+            const elemento = document.getElementById(id);
+            let iteracion = 0;
+            const pasos = 30;
+            const incremento = valorFinal / pasos;
+            
+            const intervalo = setInterval(() => {
+                iteracion += incremento;
+                if (iteracion >= valorFinal) {
+                    elemento.textContent = "$" + Math.round(valorFinal).toLocaleString('en-US') + sufijo;
+                    clearInterval(intervalo);
+                } else {
+                    elemento.textContent = "$" + Math.round(iteracion).toLocaleString('en-US') + sufijo;
+                }
+            }, 20);
+        }
+
+        function cerrarVentaWA() {
+            const marca = document.getElementById("marca").value;
+            const modeloSelector = document.getElementById("modelo");
+            let modelo = "No especificado";
+            
+            if (modeloSelector.selectedIndex > 0) {
+                modelo = modeloSelector.options[modeloSelector.selectedIndex].text;
+            }
+
+            const anio = document.getElementById("anio").value;
+            const titulo = document.getElementById("titulo").value;
+            const precioBroker = document.getElementById("precio-broker").textContent;
+            const ahorro = document.getElementById("monto-ahorro").textContent;
+
+            const texto = `INICIO DE CONTRATO: Next Pro Broker \n\n` +
+                          `Datos del Vehículo:\n` +
+                          `- Marca: ${marca}\n` +
+                          `- Modelo: ${modelo}\n` +
+                          `- Año: ${anio}\n` +
+                          `- Condición: ${titulo}\n\n` +
+                          `Financiero:\n` +
+                          `- Inversión Acordada: ${precioBroker}\n` +
+                          `- Ahorro Estimado: ${ahorro}\n\n` +
+                          `Confirmación para pago de depósito y búsqueda de inventario.`;
+
+            const numeroBusiness = "18099824302";
+            const url = `https://wa.me/${numeroBusiness}?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
