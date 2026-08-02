@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXT PRO BROKER | Importación Directa</title>
-    <!-- Iconos -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     
     <style>
-        /* =========================================
-           1. VARIABLES DE TEMA Y GLASSMORPHISM
-        ========================================= */
+        /* VARIABLES Y THEME */
         :root {
-            /* Tema Oscuro (Por defecto) */
             --bg-main: #0B0E14;
             --bg-gradient: radial-gradient(circle at top right, #1a2333 0%, #0B0E14 100%);
             --glass-bg: rgba(20, 25, 35, 0.45);
@@ -21,15 +17,11 @@
             --text-main: #FFFFFF;
             --text-muted: #8E9BAE;
             --input-bg: rgba(0, 0, 0, 0.3);
-            
-            /* Colores de marca */
             --primary: #E63946;
             --primary-glow: rgba(230, 57, 70, 0.4);
             --success: #10B981;
-            --success-glow: rgba(16, 185, 129, 0.3);
         }
 
-        /* Tema Claro */
         body.light-mode {
             --bg-main: #F4F7F9;
             --bg-gradient: radial-gradient(circle at top right, #E0E8F0 0%, #F4F7F9 100%);
@@ -41,145 +33,92 @@
             --input-bg: rgba(255, 255, 255, 0.8);
         }
 
-        /* =========================================
-           2. ESTILOS GLOBALES
-        ========================================= */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        
-        body { 
-            background: var(--bg-gradient); 
-            background-attachment: fixed;
-            color: var(--text-main); 
-            line-height: 1.6; 
-            overflow-x: hidden; 
-            transition: background 0.5s ease, color 0.5s ease;
-        }
-
+        body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: all 0.5s ease; }
         .blob-1, .blob-2 { position: fixed; border-radius: 50%; filter: blur(100px); z-index: -1; opacity: 0.5; }
         .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: var(--primary); }
         .blob-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: #4A42E4; }
-
         .text-glow { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
         .hidden { display: none !important; }
 
-        /* =========================================
-           3. NAVEGACIÓN Y HERO
-        ========================================= */
-        .navbar { 
-            background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border); position: sticky; top: 0; z-index: 100; transition: all 0.5s ease;
-        }
+        /* NAV Y HERO */
+        .navbar { background: var(--glass-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); position: sticky; top: 0; z-index: 100; }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; }
+        .btn-icon { background: transparent; border: 1px solid var(--glass-border); color: var(--text-main); width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         
-        .nav-actions { display: flex; gap: 15px; align-items: center; }
-        .btn-icon {
-            background: transparent; border: 1px solid var(--glass-border); color: var(--text-main);
-            width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
-        }
-        .btn-icon:hover { background: var(--glass-border); transform: rotate(15deg); }
-
-        .btn-outline, .btn-primary, .btn-submit, .btn-whatsapp, .btn-stripe {
-            padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none;
-            transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; font-size: 1rem;
-        }
-        .btn-outline { border: 1px solid var(--primary); color: var(--text-main); background: transparent; }
-        .btn-outline:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-
-        .btn-primary, .btn-submit { background: linear-gradient(135deg, var(--primary), #b02a36); color: #fff; }
-        .btn-primary:hover, .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 25px var(--primary-glow); }
-        .btn-submit { width: 100%; margin-top: 25px; padding: 18px; font-size: 1.1rem; }
-
         .hero { padding: 100px 20px 80px; text-align: center; }
         .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 24px; font-weight: 800; }
         .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 650px; margin: 0 auto 40px; }
 
-        /* =========================================
-           4. FORMULARIO GLASSMORPHISM
-        ========================================= */
-        .glass-panel { 
-            background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: var(--glass-shadow); transition: all 0.5s ease;
-        }
-        
-        .section-cotizador { padding: 0 20px 100px; }
-        .cotizador-container { max-width: 900px; margin: 0 auto; padding: 50px; position: relative; z-index: 10; }
-        .cotizador-container h2 { margin-bottom: 35px; font-size: 1.8rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 15px; }
+        /* FORMULARIO */
+        .glass-panel { background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: var(--glass-shadow); }
+        .section-cotizador, .section-proceso { padding: 0 20px 80px; max-width: 940px; margin: 0 auto; }
+        .cotizador-container, .proceso-container { padding: 50px; position: relative; z-index: 10; }
+        .cotizador-container h2, .proceso-container h2 { margin-bottom: 35px; font-size: 1.8rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 15px; }
 
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
         .full-width { grid-column: 1 / -1; }
-        
         .input-group { display: flex; flex-direction: column; }
-        .input-group label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
-        
-        .input-group select, .input-group input { 
-            background: var(--input-bg); border: 1px solid var(--glass-border); color: var(--text-main); 
-            padding: 16px; border-radius: 12px; font-size: 1rem; outline: none; transition: all 0.3s ease; 
-        }
+        .input-group label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; font-weight: 600; }
+        .input-group select, .input-group input { background: var(--input-bg); border: 1px solid var(--glass-border); color: var(--text-main); padding: 16px; border-radius: 12px; font-size: 1rem; outline: none; }
         .input-group select:focus, .input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
-        .input-group select:disabled { opacity: 0.4; cursor: not-allowed; }
+        .nota-evaluacion { font-size: 0.8rem; color: var(--primary); margin-top: 8px; font-weight: 500; }
 
-        .nota-evaluacion { font-size: 0.8rem; color: var(--primary); margin-top: 8px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
-
-        /* =========================================
-           5. RESULTADOS
-        ========================================= */
-        .resultados-grid { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--glass-border); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        
-        .tarjeta-precio { background: var(--input-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--glass-border); }
-        .tarjeta-precio h4 { color: var(--text-muted); font-weight: 500; font-size: 1rem; }
-        .tarjeta-precio .monto { font-size: 2.2rem; font-weight: 800; margin: 10px 0; color: var(--text-main); }
-        .tarjeta-precio.dealer .monto { text-decoration: line-through; color: #888; font-size: 1.8rem; }
-        
-        .tarjeta-ahorro { 
-            grid-column: 1 / -1; background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
-            border: 1px solid var(--success); padding: 30px; border-radius: 16px; display: flex; align-items: center; gap: 25px; 
-        }
-        .tarjeta-ahorro i { font-size: 3.5rem; color: var(--success); }
-        .tarjeta-ahorro h4 { color: var(--success); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
-        .tarjeta-ahorro p { font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-top: 5px; }
-
+        /* BOTONES */
+        .btn-submit { background: linear-gradient(135deg, var(--primary), #b02a36); color: #fff; width: 100%; margin-top: 25px; padding: 18px; font-size: 1.1rem; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .btn-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; flex: 1; font-size: 1.1rem; padding: 15px; border-radius: 12px; border: none; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-stripe { background: linear-gradient(135deg, #635BFF, #4A42E4); color: #fff; flex: 1; padding: 15px; border-radius: 12px; border: none; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .acciones-cierre { grid-column: 1 / -1; display: flex; gap: 20px; margin-top: 10px; }
-        .btn-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; flex: 1; font-size: 1.1rem; border-radius: 12px; }
-        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+
+        /* RESULTADOS */
+        .resultados-grid { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--glass-border); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .tarjeta-precio { background: var(--input-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--glass-border); }
+        .tarjeta-precio h4 { color: var(--text-muted); font-size: 1rem; }
+        .tarjeta-precio .monto { font-size: 2.2rem; font-weight: 800; margin: 10px 0; color: var(--text-main); }
+        .tarjeta-ahorro { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%); border: 1px solid var(--success); padding: 30px; border-radius: 16px; display: flex; align-items: center; gap: 25px; }
+        .tarjeta-ahorro p { font-size: 2.2rem; font-weight: 800; color: var(--text-main); }
+
+        /* SECCIÓN PROCESO (NUEVO) */
+        .proceso-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .paso-card { background: var(--input-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--glass-border); position: relative; }
+        .paso-numero { position: absolute; top: -15px; left: 20px; background: var(--primary); color: #fff; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
+        .paso-card h4 { margin-top: 10px; margin-bottom: 10px; font-size: 1.1rem; color: var(--text-main); }
+        .paso-card p { color: var(--text-muted); font-size: 0.9rem; }
         
-        .btn-stripe { background: linear-gradient(135deg, #635BFF, #4A42E4); color: #fff; flex: 1; border-radius: 12px; }
-        .btn-stripe:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(99, 91, 255, 0.4); }
+        .tiempo-estimado { background: rgba(230, 57, 70, 0.1); border: 1px dashed var(--primary); padding: 20px; border-radius: 12px; text-align: center; margin-top: 20px; }
+        .tiempo-estimado h3 { color: var(--primary); font-size: 1.5rem; }
 
         footer { text-align: center; padding: 40px 20px; color: var(--text-muted); }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .form-grid, .resultados-grid, .acciones-cierre { grid-template-columns: 1fr; }
-            .cotizador-container { padding: 30px 20px; }
+            .cotizador-container, .proceso-container { padding: 30px 20px; }
             .acciones-cierre { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Fondos dinámicos -->
     <div class="blob-1"></div>
     <div class="blob-2"></div>
 
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">NEXT <span class="text-glow">PRO BROKER</span></div>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="btn-icon"><i class='bx bx-sun'></i></button>
-            </div>
+            <button id="theme-toggle" class="btn-icon"><i class='bx bx-sun'></i></button>
         </div>
     </nav>
 
-    <!-- Header Hero enfocado en la venta y el ahorro -->
     <header class="hero">
         <div class="hero-content">
-            <h1>Compra tu Vehículo en EE. UU. <br><span class="text-glow">Ahorra hasta un 20% del Mercado Local.</span></h1>
-            <p>Nos encargamos de la compra en subastas privadas y la logística completa hacia República Dominicana. Obtén el precio real de importación.</p>
+            <h1>Compra tu Vehículo en EE. UU. <br><span class="text-glow">Ahorra hasta un 30% del Mercado.</span></h1>
+            <p>Nos encargamos de la compra en subastas privadas y la logística hacia República Dominicana. Obtén el precio real de importación.</p>
         </div>
     </header>
 
+    <!-- 1. SECCIÓN DE COTIZACIÓN -->
     <section id="cotizador" class="section-cotizador">
         <div class="cotizador-container glass-panel">
             <h2>Evaluación de Importación Automotriz</h2>
@@ -194,32 +133,23 @@
                             <option value="Audi">Audi</option>
                             <option value="BMW">BMW</option>
                             <option value="Chevrolet">Chevrolet</option>
-                            <option value="Dodge">Dodge</option>
-                            <option value="Ford">Ford</option>
                             <option value="Honda">Honda</option>
                             <option value="Hyundai">Hyundai</option>
                             <option value="Infiniti">Infiniti</option>
-                            <option value="Jeep">Jeep</option>
-                            <option value="Kia">Kia</option>
-                            <option value="Lexus">Lexus</option>
-                            <option value="Mazda">Mazda</option>
-                            <option value="Mercedes-Benz">Mercedes-Benz</option>
-                            <option value="Nissan">Nissan</option>
-                            <option value="Porsche">Porsche</option>
                             <option value="Toyota">Toyota</option>
                             <option value="Volkswagen">Volkswagen</option>
                         </select>
                     </div>
                     
                     <div class="input-group">
-                        <label>Modelo <span id="loading-modelos" class="hidden" style="color:var(--primary); font-size:0.8rem;">Cargando...</span></label>
+                        <label>Modelo <span id="loading-modelos" class="hidden" style="color:var(--primary);">Cargando...</span></label>
                         <select id="modelo" disabled required>
                             <option value="" disabled selected>Seleccione primero la marca...</option>
                         </select>
                     </div>
 
                     <div class="input-group">
-                        <label>Año de Preferencia</label>
+                        <label>Año</label>
                         <select id="anio" required>
                             <option value="" disabled selected>Seleccionar...</option>
                             <option value="2025">2025</option>
@@ -228,28 +158,25 @@
                             <option value="2022">2022</option>
                             <option value="2021">2021</option>
                             <option value="2020">2020</option>
-                            <option value="2019">2019</option>
-                            <option value="2018">2018</option>
                         </select>
                     </div>
                     
                     <div class="input-group">
                         <label>Condición del Título</label>
                         <select id="titulo" required>
-                            <option value="Clean Title">Clean Title (Manheim)</option>
+                            <option value="Clean Title">Clean Title (Manheim / Dealer)</option>
                             <option value="Salvage / Rebuilt">Rebuilt/Salvage (Copart/IAAI)</option>
                         </select>
                     </div>
 
-                    <!-- Input Presupuesto (AHORA OPCIONAL) -->
                     <div class="input-group full-width">
                         <label>Presupuesto Máximo de Inversión (Opcional)</label>
                         <input type="number" id="presupuesto" placeholder="Ej: 22000 (Si se deja en blanco, evaluaremos el mercado por ti)">
-                        <span class="nota-evaluacion"><i class='bx bx-error-circle'></i> Toda cotización será evaluada con la disponibilidad de inventario antes de proceder.</span>
+                        <span class="nota-evaluacion"><i class='bx bx-error-circle'></i> Toda cotización es evaluada con la disponibilidad de inventario.</span>
                     </div>
                 </div>
 
-                <button type="button" class="btn-submit" onclick="calcularProyeccion()">Procesar Cotización de Vehículo</button>
+                <button type="button" class="btn-submit" onclick="calcularProyeccion()">Procesar Cotización</button>
             </form>
 
             <div id="panel-resultados" class="resultados-grid hidden">
@@ -272,50 +199,81 @@
                 </div>
 
                 <div class="acciones-cierre">
-                    <button class="btn-whatsapp" onclick="cerrarVentaWA()"><i class='bx bxl-whatsapp'></i> Solicitar Evaluación por WhatsApp</button>
-                    <button class="btn-stripe"><i class='bx bx-credit-card'></i> Iniciar Búsqueda ($200)</button>
+                    <button class="btn-whatsapp" onclick="cerrarVentaWA()"><i class='bx bxl-whatsapp'></i> Enviar a WhatsApp</button>
+                    <button class="btn-stripe"><i class='bx bx-credit-card'></i> Pagar Búsqueda ($200)</button>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- 2. SECCIÓN DE PROCESO (NUEVA) -->
+    <section id="proceso" class="section-proceso">
+        <div class="proceso-container glass-panel">
+            <h2>¿Cómo Funciona el Proceso?</h2>
+            
+            <div class="proceso-grid">
+                <div class="paso-card">
+                    <div class="paso-numero">1</div>
+                    <h4>Evaluación y Depósito</h4>
+                    <p>Enviamos las opciones del mercado (fotos y Condition Reports). Al elegir, realizas un depósito de compromiso para ejecutar la compra.</p>
+                </div>
+                
+                <div class="paso-card">
+                    <div class="paso-numero">2</div>
+                    <h4>Compra en Subasta</h4>
+                    <p>Adquirimos la unidad directamente en EE. UU. gestionando los trámites y el pago seguro sin intermediarios ni impuestos locales innecesarios.</p>
+                </div>
+
+                <div class="paso-card">
+                    <div class="paso-numero">3</div>
+                    <h4>Logística e Importación</h4>
+                    <p>Transportamos el vehículo en grúa hacia el puerto de Miami y coordinamos el flete marítimo seguro hacia República Dominicana.</p>
+                </div>
+
+                <div class="paso-card">
+                    <div class="paso-numero">4</div>
+                    <h4>Aduanas y Entrega</h4>
+                    <p>Gestionamos la liquidación de impuestos en la DGA. Recibes tu vehículo listo para rodar, manteniendo el margen de ahorro prometido.</p>
+                </div>
+            </div>
+
+            <div class="tiempo-estimado">
+                <i class='bx bx-timer' style="font-size: 2.5rem; color: var(--primary);"></i>
+                <h3>Tiempo Estimado: 45 Días Laborables</h3>
+                <p>Desde el momento de la compra en la subasta hasta la entrega de la unidad en República Dominicana.</p>
+            </div>
+            
+            <button class="btn-submit" style="margin-top: 20px;" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">Configurar mi Vehículo Arriba</button>
+        </div>
+    </section>
+
     <footer>
-        <p><strong>NEXT PRO BROKER</strong> &copy; 2026 | Importación y Ventas</p>
+        <p><strong>NEXT PRO BROKER</strong> &copy; 2026 | Importación y Ventas Directas</p>
     </footer>
 
-    <!-- LÓGICA JAVASCRIPT -->
     <script>
-        // 1. SISTEMA DARK/LIGHT MODE
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        const themeIcon = themeToggle.querySelector('i');
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            if (body.classList.contains('light-mode')) {
-                themeIcon.classList.replace('bx-sun', 'bx-moon');
-            } else {
-                themeIcon.classList.replace('bx-moon', 'bx-sun');
-            }
+        // DARK/LIGHT MODE
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const icon = document.querySelector('#theme-toggle i');
+            icon.classList.toggle('bx-sun');
+            icon.classList.toggle('bx-moon');
         });
 
-        // 2. CONEXIÓN API NHTSA
+        // API MODELOS
         async function cargarModelosAPI() {
-            const marcaSeleccionada = document.getElementById("marca").value;
+            const marca = document.getElementById("marca").value;
             const selectModelo = document.getElementById("modelo");
-            const loadingText = document.getElementById("loading-modelos");
-
             selectModelo.innerHTML = '<option value="" disabled selected>Seleccione el modelo...</option>';
             selectModelo.disabled = true;
 
-            if (!marcaSeleccionada) return;
-            loadingText.classList.remove("hidden");
+            if (!marca) return;
+            document.getElementById("loading-modelos").classList.remove("hidden");
 
             try {
-                const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${marcaSeleccionada}?format=json`);
+                const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${marca}?format=json`);
                 const data = await response.json();
-                const modelos = data.Results.map(item => item.Model_Name).sort();
-                const modelosUnicos = [...new Set(modelos)];
+                const modelosUnicos = [...new Set(data.Results.map(i => i.Model_Name).sort())];
 
                 modelosUnicos.forEach(modelo => {
                     let opt = document.createElement("option");
@@ -324,117 +282,68 @@
                     selectModelo.appendChild(opt);
                 });
 
-                if(marcaSeleccionada === "Infiniti") {
+                if(marca === "Infiniti") {
                      let optQ50s = document.createElement("option");
-                     optQ50s.value = "Q50s";
-                     optQ50s.textContent = "Q50s";
+                     optQ50s.value = "Q50s"; optQ50s.textContent = "Q50s";
                      selectModelo.insertBefore(optQ50s, selectModelo.children[1]);
                 }
                 selectModelo.disabled = false;
             } catch (error) {
-                selectModelo.innerHTML = '<option value="" disabled>Error. Escriba el modelo en WhatsApp.</option>';
                 selectModelo.disabled = false;
             } finally {
-                loadingText.classList.add("hidden");
+                document.getElementById("loading-modelos").classList.add("hidden");
             }
         }
 
-        // 3. MOTOR DE CÁLCULO (ACEPTA PRESUPUESTO EN BLANCO)
+        // CÁLCULO
         function calcularProyeccion() {
             const marca = document.getElementById("marca").value;
             const modelo = document.getElementById("modelo").value;
-            const anio = document.getElementById("anio").value;
-            const presupuestoInput = document.getElementById("presupuesto").value;
-
-            // El presupuesto ya no está aquí como validación obligatoria
-            if (!marca || !modelo || !anio) {
-                alert("Por favor selecciona al menos la Marca, Modelo y Año del vehículo.");
-                return;
-            }
+            if (!marca || !modelo) return alert("Selecciona la Marca y el Modelo.");
 
             const panel = document.getElementById("panel-resultados");
             panel.classList.remove("hidden");
+            const pres = document.getElementById("presupuesto").value;
 
-            // Si el cliente ingresó un monto, hacemos el cálculo del ahorro
-            if (presupuestoInput !== "") {
-                const presupuesto = parseFloat(presupuestoInput);
-                const margenDealer = 1.20; // Proyecta un 20% más caro en calle
-                const precioCalleRD = presupuesto * margenDealer;
-                const ahorroCalculado = precioCalleRD - presupuesto;
-
-                animarContador("precio-local", precioCalleRD);
-                animarContador("precio-broker", presupuesto);
-                animarContador("monto-ahorro", ahorroCalculado, " USD");
-            } 
-            // Si el cliente NO ingresó monto, mostramos textos indicando que requiere evaluación
-            else {
+            if (pres !== "") {
+                const p = parseFloat(pres);
+                // Calculando un ahorro basado en el 30% mencionado (El dealer local costaría un 42% más para justificar el 30% de ahorro del total)
+                const precioCalleRD = p * 1.30; 
+                document.getElementById("precio-local").textContent = "$" + precioCalleRD.toLocaleString('en-US');
+                document.getElementById("precio-broker").textContent = "$" + p.toLocaleString('en-US');
+                document.getElementById("monto-ahorro").textContent = "$" + (precioCalleRD - p).toLocaleString('en-US') + " USD";
+            } else {
                 document.getElementById("precio-local").textContent = "Por Cotizar";
                 document.getElementById("precio-broker").textContent = "A Evaluar";
                 document.getElementById("monto-ahorro").textContent = "Sujeto a Mercado";
             }
-            
-            setTimeout(() => {
-                panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
+            setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
         }
 
-        function animarContador(id, valorFinal, sufijo = "") {
-            const elemento = document.getElementById(id);
-            let iteracion = 0;
-            const pasos = 30;
-            const incremento = valorFinal / pasos;
-            
-            const intervalo = setInterval(() => {
-                iteracion += incremento;
-                if (iteracion >= valorFinal) {
-                    elemento.textContent = "$" + Math.round(valorFinal).toLocaleString('en-US') + sufijo;
-                    clearInterval(intervalo);
-                } else {
-                    elemento.textContent = "$" + Math.round(iteracion).toLocaleString('en-US') + sufijo;
-                }
-            }, 20);
-        }
-
-        // 4. ENVÍO DIRECTO A WHATSAPP BUSINESS
+        // WHATSAPP (Emojis universales)
         function cerrarVentaWA() {
-            const marca = document.getElementById("marca").value;
-            const modeloSelector = document.getElementById("modelo");
-            let modelo = "No especificado";
-            
-            if (modeloSelector.selectedIndex > 0) {
-                modelo = modeloSelector.options[modeloSelector.selectedIndex].text;
-            }
+            const m = document.getElementById("marca").value;
+            const modSel = document.getElementById("modelo");
+            const mod = modSel.selectedIndex > 0 ? modSel.options[modSel.selectedIndex].text : "No especificado";
+            const a = document.getElementById("anio").value;
+            const t = document.getElementById("titulo").value;
+            const p = document.getElementById("presupuesto").value;
 
-            const anio = document.getElementById("anio").value;
-            const titulo = document.getElementById("titulo").value;
-            const presupuestoInput = document.getElementById("presupuesto").value;
+            let fin = p !== "" 
+                ? `💵 *Presupuesto:* $${p} USD\n📉 *Inversión Proyectada:* ${document.getElementById("precio-broker").textContent}\n💰 *Ahorro Estimado:* ${document.getElementById("monto-ahorro").textContent}\n`
+                : `📋 *Presupuesto:* A cotizar según mercado.\n`;
 
-            // Formatear el texto dependiendo de si puso presupuesto o no
-            let financieroTexto = "";
-            if (presupuestoInput !== "") {
-                const precioBroker = document.getElementById("precio-broker").textContent;
-                const ahorro = document.getElementById("monto-ahorro").textContent;
-                financieroTexto = `- Presupuesto Indicado: $${presupuestoInput} USD\n` +
-                                  `- Inversión Proyectada: ${precioBroker}\n` +
-                                  `- Ahorro Estimado: ${ahorro}\n\n` +
-                                  `Solicito validación de inventario para este presupuesto.`;
-            } else {
-                financieroTexto = `- Presupuesto: A cotizar\n\n` +
-                                  `Solicito una evaluación del mercado actual para este vehículo con el ahorro incluido.`;
-            }
+            const texto = `👋 *NUEVA EVALUACIÓN: NEXT PRO BROKER*\n\n` +
+                          `🚗 *VEHÍCULO SOLICITADO:*\n` +
+                          `▪️ *Marca:* ${m}\n` +
+                          `▪️ *Modelo:* ${mod}\n` +
+                          `📆 *Año:* ${a}\n` +
+                          `📑 *Condición:* ${t}\n\n` +
+                          `📊 *ESTRUCTURA FINANCIERA:*\n` + fin + `\n` +
+                          `⏳ *Tiempo Estimado de Logística:* 45 días laborables.\n\n` +
+                          `✅ Solicito la validación de inventario para iniciar el proceso.`;
 
-            const texto = `EVALUACIÓN DE COMPRA: Next Pro Broker \n\n` +
-                          `🚘 *Datos del Vehículo:*\n` +
-                          `- Marca: ${marca}\n` +
-                          `- Modelo: ${modelo}\n` +
-                          `- Año: ${anio}\n` +
-                          `- Condición: ${titulo}\n\n` +
-                          `📊 *Estructura Financiera:*\n` +
-                          financieroTexto;
-
-            const numeroBusiness = "18099824302";
-            const url = `https://wa.me/${numeroBusiness}?text=${encodeURIComponent(texto)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/18099824302?text=${encodeURIComponent(texto)}`, '_blank');
         }
     </script>
 </body>
