@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXT PRO BROKER | Acceso a Subastas</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Iconos -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">NEXT <span>PRO BROKER</span></div>
+            <a href="#cotizador" class="btn-outline">Cotizar Vehículo</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Compra directo en subasta. <br><span class="highlight">Paga el precio real.</span></h1>
+            <p>Acceso a inventario Clean Title en Manheim y Salvage en Copart/IAAI. Cotiza tu vehículo llave en mano puesto en República Dominicana.</p>
+            <a href="#cotizador" class="btn-primary"><i class='bx bx-calculator'></i> Iniciar Cotización</a>
+        </div>
+    </header>
+
+    <!-- Cotizador Dinámico -->
+    <section id="cotizador" class="section-cotizador">
+        <div class="cotizador-container glass-panel">
+            <h2>Configuración de Compra</h2>
+            
+            <form id="pro-form">
+                <div class="form-grid">
+                    <!-- Fila 1 -->
+                    <div class="input-group">
+                        <label>Marca</label>
+                        <select id="marca" onchange="actualizarModelos()" required>
+                            <option value="" disabled selected>Seleccionar...</option>
+                            <option value="honda">Honda</option>
+                            <option value="hyundai">Hyundai</option>
+                            <option value="toyota">Toyota</option>
+                            <option value="infiniti">Infiniti</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Modelo</label>
+                        <select id="modelo" onchange="actualizarVersiones()" disabled required>
+                            <option value="" disabled selected>Seleccionar...</option>
+                        </select>
+                    </div>
+
+                    <!-- Fila 2 -->
+                    <div class="input-group">
+                        <label>Versión</label>
+                        <select id="version" disabled required>
+                            <option value="" disabled selected>Seleccionar...</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Año</label>
+                        <select id="anio" required>
+                            <option value="" disabled selected>Seleccionar...</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Fila 3 -->
+                    <div class="input-group">
+                        <label>Condición del Título</label>
+                        <select id="titulo" required>
+                            <option value="clean">Clean Title (Manheim)</option>
+                            <option value="salvage">Rebuilt/Salvage (Copart/IAAI)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Presupuesto Máximo (USD)</label>
+                        <input type="number" id="presupuesto" placeholder="Ej: 20000" required>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-submit" onclick="calcularProyeccion()">Generar Proyección Financiera</button>
+            </form>
+
+            <!-- Panel de Resultados (Oculto por defecto) -->
+            <div id="panel-resultados" class="resultados-grid hidden">
+                <div class="tarjeta-precio dealer">
+                    <h4>Precio Promedio Local</h4>
+                    <p class="monto" id="precio-local">$0</p>
+                    <span class="etiqueta">Dealer en RD</span>
+                </div>
+                
+                <div class="tarjeta-precio broker">
+                    <h4>Precio NEXT PRO BROKER</h4>
+                    <p class="monto highlight" id="precio-broker">$0</p>
+                    <span class="etiqueta">Llave en mano</span>
+                </div>
+
+                <div class="tarjeta-ahorro">
+                    <i class='bx bxs-check-shield'></i>
+                    <div class="ahorro-info">
+                        <h4>Ahorro Directo</h4>
+                        <p id="monto-ahorro">$0 USD</p>
+                    </div>
+                </div>
+
+                <div class="acciones-cierre">
+                    <button class="btn-whatsapp" onclick="cerrarVentaWA()"><i class='bx bxl-whatsapp'></i> Solicitar Contrato</button>
+                    <button class="btn-stripe"><i class='bx bx-credit-card'></i> Pagar Depósito ($200)</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Simple y Transaccional -->
+    <footer>
+        <div class="footer-content">
+            <p><strong>NEXT PRO BROKER</strong> | Importación Directa y Corretaje</p>
+            <p>Miami, FL - Santo Domingo, RD</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
