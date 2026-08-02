@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXT PRO BROKER | Portal Corporativo</title>
+    <title>NEXT PRO BROKER | Importación Directa</title>
     <!-- Iconos -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     
@@ -29,7 +29,7 @@
             --success-glow: rgba(16, 185, 129, 0.3);
         }
 
-        /* Tema Claro (Se activa con JS) */
+        /* Tema Claro */
         body.light-mode {
             --bg-main: #F4F7F9;
             --bg-gradient: radial-gradient(circle at top right, #E0E8F0 0%, #F4F7F9 100%);
@@ -55,14 +55,10 @@
             transition: background 0.5s ease, color 0.5s ease;
         }
 
-        /* Esferas decorativas de fondo para el efecto Glass */
-        .blob-1, .blob-2 {
-            position: fixed; border-radius: 50%; filter: blur(100px); z-index: -1; opacity: 0.5;
-        }
+        .blob-1, .blob-2 { position: fixed; border-radius: 50%; filter: blur(100px); z-index: -1; opacity: 0.5; }
         .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: var(--primary); }
         .blob-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: #4A42E4; }
 
-        /* Clases de utilidad */
         .text-glow { color: var(--primary); text-shadow: 0 0 15px var(--primary-glow); }
         .hidden { display: none !important; }
 
@@ -70,18 +66,13 @@
            3. NAVEGACIÓN Y HERO
         ========================================= */
         .navbar { 
-            background: var(--glass-bg); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border); 
-            position: sticky; top: 0; z-index: 100; 
-            transition: all 0.5s ease;
+            background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border); position: sticky; top: 0; z-index: 100; transition: all 0.5s ease;
         }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; }
         
         .nav-actions { display: flex; gap: 15px; align-items: center; }
-        
         .btn-icon {
             background: transparent; border: 1px solid var(--glass-border); color: var(--text-main);
             width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
@@ -105,16 +96,11 @@
         .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 650px; margin: 0 auto 40px; }
 
         /* =========================================
-           4. GLASSMORPHISM FORMULARIO
+           4. FORMULARIO GLASSMORPHISM
         ========================================= */
         .glass-panel { 
-            background: var(--glass-bg); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border); 
-            border-radius: 20px; 
-            box-shadow: var(--glass-shadow); 
-            transition: all 0.5s ease;
+            background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: var(--glass-shadow); transition: all 0.5s ease;
         }
         
         .section-cotizador { padding: 0 20px 100px; }
@@ -128,45 +114,31 @@
         .input-group label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
         
         .input-group select, .input-group input { 
-            background: var(--input-bg); 
-            border: 1px solid var(--glass-border); 
-            color: var(--text-main); 
-            padding: 16px; 
-            border-radius: 12px; 
-            font-size: 1rem; 
-            outline: none; 
-            transition: all 0.3s ease; 
+            background: var(--input-bg); border: 1px solid var(--glass-border); color: var(--text-main); 
+            padding: 16px; border-radius: 12px; font-size: 1rem; outline: none; transition: all 0.3s ease; 
         }
         .input-group select:focus, .input-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
         .input-group select:disabled { opacity: 0.4; cursor: not-allowed; }
 
-        /* Advertencia Presupuesto */
-        .nota-evaluacion {
-            font-size: 0.8rem; color: var(--primary); margin-top: 8px; font-weight: 500;
-            display: flex; align-items: center; gap: 5px;
-        }
+        .nota-evaluacion { font-size: 0.8rem; color: var(--primary); margin-top: 8px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
 
         /* =========================================
-           5. RESULTADOS Y CIERRE
+           5. RESULTADOS
         ========================================= */
         .resultados-grid { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--glass-border); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
-        .tarjeta-precio { 
-            background: var(--input-bg); 
-            padding: 30px; border-radius: 16px; border: 1px solid var(--glass-border); 
-        }
+        .tarjeta-precio { background: var(--input-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--glass-border); }
         .tarjeta-precio h4 { color: var(--text-muted); font-weight: 500; font-size: 1rem; }
-        .tarjeta-precio .monto { font-size: 2.5rem; font-weight: 800; margin: 10px 0; }
-        .tarjeta-precio.dealer .monto { text-decoration: line-through; color: #888; font-size: 2rem; }
+        .tarjeta-precio .monto { font-size: 2.2rem; font-weight: 800; margin: 10px 0; color: var(--text-main); }
+        .tarjeta-precio.dealer .monto { text-decoration: line-through; color: #888; font-size: 1.8rem; }
         
         .tarjeta-ahorro { 
-            grid-column: 1 / -1; 
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+            grid-column: 1 / -1; background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
             border: 1px solid var(--success); padding: 30px; border-radius: 16px; display: flex; align-items: center; gap: 25px; 
         }
         .tarjeta-ahorro i { font-size: 3.5rem; color: var(--success); }
         .tarjeta-ahorro h4 { color: var(--success); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
-        .tarjeta-ahorro p { font-size: 2.5rem; font-weight: 800; color: var(--text-main); margin-top: 5px; }
+        .tarjeta-ahorro p { font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-top: 5px; }
 
         .acciones-cierre { grid-column: 1 / -1; display: flex; gap: 20px; margin-top: 10px; }
         .btn-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; flex: 1; font-size: 1.1rem; border-radius: 12px; }
@@ -191,7 +163,6 @@
     <div class="blob-1"></div>
     <div class="blob-2"></div>
 
-    <!-- Navegación -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">NEXT <span class="text-glow">PRO BROKER</span></div>
@@ -201,18 +172,17 @@
         </div>
     </nav>
 
-    <!-- Header Hero -->
+    <!-- Header Hero enfocado en la venta y el ahorro -->
     <header class="hero">
         <div class="hero-content">
-            <h1>Acceso Directo a Subastas. <br><span class="text-glow">Cierre Sin Intermediarios.</span></h1>
-            <p>Cotiza la importación de tu vehículo a República Dominicana. Tecnología Glassmorphism para una cotización transparente.</p>
+            <h1>Compra tu Vehículo en EE. UU. <br><span class="text-glow">Ahorra hasta un 20% del Mercado Local.</span></h1>
+            <p>Nos encargamos de la compra en subastas privadas y la logística completa hacia República Dominicana. Obtén el precio real de importación.</p>
         </div>
     </header>
 
-    <!-- Cotizador -->
     <section id="cotizador" class="section-cotizador">
         <div class="cotizador-container glass-panel">
-            <h2>Evaluación de Inversión Automotriz</h2>
+            <h2>Evaluación de Importación Automotriz</h2>
             
             <form id="pro-form">
                 <div class="form-grid">
@@ -271,18 +241,17 @@
                         </select>
                     </div>
 
-                    <!-- Input Presupuesto con Advertencia -->
+                    <!-- Input Presupuesto (AHORA OPCIONAL) -->
                     <div class="input-group full-width">
-                        <label>Presupuesto Máximo de Inversión (USD)</label>
-                        <input type="number" id="presupuesto" placeholder="Ej: 22000" required>
-                        <span class="nota-evaluacion"><i class='bx bx-error-circle'></i> El monto final debe ser evaluado y validado en el mercado antes de proceder.</span>
+                        <label>Presupuesto Máximo de Inversión (Opcional)</label>
+                        <input type="number" id="presupuesto" placeholder="Ej: 22000 (Si se deja en blanco, evaluaremos el mercado por ti)">
+                        <span class="nota-evaluacion"><i class='bx bx-error-circle'></i> Toda cotización será evaluada con la disponibilidad de inventario antes de proceder.</span>
                     </div>
                 </div>
 
-                <button type="button" class="btn-submit" onclick="calcularProyeccion()">Procesar Viabilidad y Ahorro</button>
+                <button type="button" class="btn-submit" onclick="calcularProyeccion()">Procesar Cotización de Vehículo</button>
             </form>
 
-            <!-- Resultados -->
             <div id="panel-resultados" class="resultados-grid hidden">
                 <div class="tarjeta-precio dealer">
                     <h4>Valor Estimado (Dealer RD)</h4>
@@ -297,26 +266,24 @@
                 <div class="tarjeta-ahorro">
                     <i class='bx bxs-check-shield'></i>
                     <div class="ahorro-info">
-                        <h4>Ahorro Retenido</h4>
+                        <h4>Ahorro Frente al Mercado</h4>
                         <p id="monto-ahorro">$0 USD</p>
                     </div>
                 </div>
 
                 <div class="acciones-cierre">
-                    <button class="btn-whatsapp" onclick="cerrarVentaWA()"><i class='bx bxl-whatsapp'></i> Enviar Evaluación a WhatsApp</button>
-                    <button class="btn-stripe"><i class='bx bx-credit-card'></i> Pago de Búsqueda ($200)</button>
+                    <button class="btn-whatsapp" onclick="cerrarVentaWA()"><i class='bx bxl-whatsapp'></i> Solicitar Evaluación por WhatsApp</button>
+                    <button class="btn-stripe"><i class='bx bx-credit-card'></i> Iniciar Búsqueda ($200)</button>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p><strong>NEXT PRO BROKER</strong> &copy; 2026 | Logística y Corretaje Automotriz</p>
+        <p><strong>NEXT PRO BROKER</strong> &copy; 2026 | Importación y Ventas</p>
     </footer>
 
-    <!-- ==========================================
-         LÓGICA JAVASCRIPT (Todo Integrado)
-    =========================================== -->
+    <!-- LÓGICA JAVASCRIPT -->
     <script>
         // 1. SISTEMA DARK/LIGHT MODE
         const themeToggle = document.getElementById('theme-toggle');
@@ -342,13 +309,11 @@
             selectModelo.disabled = true;
 
             if (!marcaSeleccionada) return;
-
             loadingText.classList.remove("hidden");
 
             try {
                 const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${marcaSeleccionada}?format=json`);
                 const data = await response.json();
-
                 const modelos = data.Results.map(item => item.Model_Name).sort();
                 const modelosUnicos = [...new Set(modelos)];
 
@@ -359,46 +324,54 @@
                     selectModelo.appendChild(opt);
                 });
 
-                // Corrección especial para el Q50s
                 if(marcaSeleccionada === "Infiniti") {
                      let optQ50s = document.createElement("option");
                      optQ50s.value = "Q50s";
                      optQ50s.textContent = "Q50s";
                      selectModelo.insertBefore(optQ50s, selectModelo.children[1]);
                 }
-
                 selectModelo.disabled = false;
             } catch (error) {
-                selectModelo.innerHTML = '<option value="" disabled>Error de red. Describa en WhatsApp.</option>';
+                selectModelo.innerHTML = '<option value="" disabled>Error. Escriba el modelo en WhatsApp.</option>';
                 selectModelo.disabled = false;
             } finally {
                 loadingText.classList.add("hidden");
             }
         }
 
-        // 3. MOTOR FINANCIERO CON ANIMACIÓN DE CONTADORES
+        // 3. MOTOR DE CÁLCULO (ACEPTA PRESUPUESTO EN BLANCO)
         function calcularProyeccion() {
             const marca = document.getElementById("marca").value;
             const modelo = document.getElementById("modelo").value;
             const anio = document.getElementById("anio").value;
             const presupuestoInput = document.getElementById("presupuesto").value;
 
-            if (!marca || !modelo || !anio || !presupuestoInput) {
-                alert("Por favor completa los detalles del vehículo y tu presupuesto de inversión.");
+            // El presupuesto ya no está aquí como validación obligatoria
+            if (!marca || !modelo || !anio) {
+                alert("Por favor selecciona al menos la Marca, Modelo y Año del vehículo.");
                 return;
             }
 
-            const presupuesto = parseFloat(presupuestoInput);
-            const margenDealer = 1.18; // Simulando el sobreprecio local de 18%
-            const precioCalleRD = presupuesto * margenDealer;
-            const ahorroCalculado = precioCalleRD - presupuesto;
-
-            animarContador("precio-local", precioCalleRD);
-            animarContador("precio-broker", presupuesto);
-            animarContador("monto-ahorro", ahorroCalculado, " USD");
-
             const panel = document.getElementById("panel-resultados");
             panel.classList.remove("hidden");
+
+            // Si el cliente ingresó un monto, hacemos el cálculo del ahorro
+            if (presupuestoInput !== "") {
+                const presupuesto = parseFloat(presupuestoInput);
+                const margenDealer = 1.20; // Proyecta un 20% más caro en calle
+                const precioCalleRD = presupuesto * margenDealer;
+                const ahorroCalculado = precioCalleRD - presupuesto;
+
+                animarContador("precio-local", precioCalleRD);
+                animarContador("precio-broker", presupuesto);
+                animarContador("monto-ahorro", ahorroCalculado, " USD");
+            } 
+            // Si el cliente NO ingresó monto, mostramos textos indicando que requiere evaluación
+            else {
+                document.getElementById("precio-local").textContent = "Por Cotizar";
+                document.getElementById("precio-broker").textContent = "A Evaluar";
+                document.getElementById("monto-ahorro").textContent = "Sujeto a Mercado";
+            }
             
             setTimeout(() => {
                 panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -434,23 +407,31 @@
 
             const anio = document.getElementById("anio").value;
             const titulo = document.getElementById("titulo").value;
-            const presupuesto = document.getElementById("presupuesto").value;
-            const precioBroker = document.getElementById("precio-broker").textContent;
-            const ahorro = document.getElementById("monto-ahorro").textContent;
+            const presupuestoInput = document.getElementById("presupuesto").value;
 
-            const texto = `INICIO DE EVALUACIÓN: Next Pro Broker \n\n` +
+            // Formatear el texto dependiendo de si puso presupuesto o no
+            let financieroTexto = "";
+            if (presupuestoInput !== "") {
+                const precioBroker = document.getElementById("precio-broker").textContent;
+                const ahorro = document.getElementById("monto-ahorro").textContent;
+                financieroTexto = `- Presupuesto Indicado: $${presupuestoInput} USD\n` +
+                                  `- Inversión Proyectada: ${precioBroker}\n` +
+                                  `- Ahorro Estimado: ${ahorro}\n\n` +
+                                  `Solicito validación de inventario para este presupuesto.`;
+            } else {
+                financieroTexto = `- Presupuesto: A cotizar\n\n` +
+                                  `Solicito una evaluación del mercado actual para este vehículo con el ahorro incluido.`;
+            }
+
+            const texto = `EVALUACIÓN DE COMPRA: Next Pro Broker \n\n` +
                           `🚘 *Datos del Vehículo:*\n` +
                           `- Marca: ${marca}\n` +
                           `- Modelo: ${modelo}\n` +
                           `- Año: ${anio}\n` +
                           `- Condición: ${titulo}\n\n` +
-                          `📊 *Estructura Financiera (Sujeta a Validación):*\n` +
-                          `- Presupuesto Indicado: $${presupuesto} USD\n` +
-                          `- Inversión Proyectada: ${precioBroker}\n` +
-                          `- Ahorro Estimado: ${ahorro}\n\n` +
-                          `Solicito validación de mercado para proceder con el depósito de búsqueda.`;
+                          `📊 *Estructura Financiera:*\n` +
+                          financieroTexto;
 
-            // Número configurado según solicitud
             const numeroBusiness = "18099824302";
             const url = `https://wa.me/${numeroBusiness}?text=${encodeURIComponent(texto)}`;
             window.open(url, '_blank');
