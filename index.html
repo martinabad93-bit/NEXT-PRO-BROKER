@@ -7,228 +7,225 @@
     
     <style>
         /* =========================================
-           1. SISTEMA DE DISEÑO ULTRA-PRO & GLASS
-        ========================================= */
-        :root {
-            /* Modo Oscuro (Por Defecto - Deep Obsidian & Neon Crimson) */
-            --bg-main: #06090E;
-            --bg-gradient: radial-gradient(circle at 80% -20%, #1a233A 0%, #06090E 80%);
-            --glass-bg: rgba(18, 24, 38, 0.55);
-            --glass-border: rgba(255, 255, 255, 0.09);
-            --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            --input-bg: rgba(0, 0, 0, 0.35);
-            
-            --text-main: #FFFFFF;
-            --text-muted: #94A3B8;
-            
-            --primary: #FF2A4B;
-            --primary-gradient: linear-gradient(135deg, #FF2A4B 0%, #C0112F 100%);
-            --primary-glow: rgba(255, 42, 75, 0.35);
-            
-            --success: #00E699;
-            --success-bg: rgba(0, 230, 153, 0.08);
-            --success-border: rgba(0, 230, 153, 0.3);
+           1. SISTEMA DE DISEÑO ÉLITE (FINTECH LOOK)
+           ========================================= */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
-            --accent-blue: #3B82F6;
+        :root {
+            /* MODO OSCURO (Default) */
+            --bg-main: #0A0A0A; 
+            --bg-card: #111111; 
+            --bg-input: #1A1A1A; 
+            --border-color: #2A2A2A; 
+            
+            --text-main: #FAFAFA;
+            --text-muted: #888888;
+            
+            --primary: #FF3B30; 
+            --primary-hover: #D62828;
+            
+            --success: #32D74B;
+            --success-bg: rgba(50, 215, 75, 0.1);
+            
+            --wa-color: #25D366;
+            --stripe-color: #635BFF;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+            --shadow-input: inset 0 1px 2px rgba(0,0,0,0.2);
         }
 
-        /* Modo Claro (Ultra-Clean Frost Glass) */
+        /* MODO CLARO (Editorial Clean) */
         body.light-mode {
-            --bg-main: #F1F5F9;
-            --bg-gradient: radial-gradient(circle at 80% -20%, #E2E8F0 0%, #F1F5F9 80%);
-            --glass-bg: rgba(255, 255, 255, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.8);
-            --glass-shadow: 0 20px 50px rgba(148, 163, 184, 0.2);
-            --input-bg: rgba(255, 255, 255, 0.85);
+            --bg-main: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --bg-input: #F4F4F5;
+            --border-color: #E4E4E7;
             
-            --text-main: #0F172A;
-            --text-muted: #64748B;
+            --text-main: #09090B;
+            --text-muted: #71717A;
+            
+            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
+            --shadow-input: inset 0 1px 2px rgba(0,0,0,0.02);
         }
 
         /* Reset & Base */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
         body { 
-            background: var(--bg-gradient); 
-            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main); 
             color: var(--text-main); 
             line-height: 1.6; 
             min-height: 100vh;
-            transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Ambient Glow Blobs */
-        .ambient-blob-1, .ambient-blob-2 {
-            position: fixed; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: -1; opacity: 0.45;
-        }
-        .ambient-blob-1 { top: -10%; right: -5%; width: 550px; height: 550px; background: var(--primary); }
-        .ambient-blob-2 { bottom: -10%; left: -5%; width: 600px; height: 600px; background: var(--accent-blue); }
-
-        .text-glow { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
+        /* Ocultar elementos */
         .hidden { display: none !important; }
 
-        /* Estilo para los SVG nativos */
+        /* SVG */
         .svg-icon {
-            width: 20px; height: 20px; fill: currentColor; display: inline-block; vertical-align: middle; flex-shrink: 0;
+            width: 18px; height: 18px; fill: currentColor; display: inline-block; vertical-align: middle; flex-shrink: 0;
         }
 
         /* =========================================
-           2. NAVEGACIÓN PRO
-        ========================================= */
+           2. NAVEGACIÓN
+           ========================================= */
         .navbar { 
-            background: var(--glass-bg); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border-bottom: 1px solid var(--glass-border); 
+            background: var(--bg-main); 
+            border-bottom: 1px solid var(--border-color); 
             position: sticky; top: 0; z-index: 100;
         }
-        .nav-container { max-width: 1100px; margin: 0 auto; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.4rem; font-weight: 900; letter-spacing: 1.5px; }
-        
+        .nav-container { max-width: 1000px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.5px; }
+        .logo span { color: var(--primary); }
+
         .theme-btn {
-            background: var(--input-bg); border: 1px solid var(--glass-border); color: var(--text-main);
-            width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
+            background: transparent; border: 1px solid var(--border-color); color: var(--text-main);
+            width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: background 0.2s;
         }
-        .theme-btn:hover { border-color: var(--primary); transform: scale(1.05); }
+        .theme-btn:hover { background: var(--bg-input); }
 
         /* =========================================
            3. HERO SECTION
-        ========================================= */
-        .hero { padding: 80px 20px 60px; text-align: center; }
+           ========================================= */
+        .hero { padding: 80px 24px 60px; text-align: center; max-width: 800px; margin: 0 auto; }
         .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px; background: var(--glass-bg); border: 1px solid var(--glass-border);
-            padding: 8px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; color: var(--primary); margin-bottom: 24px;
+            display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid var(--border-color);
+            padding: 6px 12px; border-radius: 99px; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 24px;
+            letter-spacing: 0.5px; text-transform: uppercase;
         }
-        .hero h1 { font-size: 3.2rem; line-height: 1.15; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 20px; }
-        .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 620px; margin: 0 auto; }
+        .hero h1 { font-size: 3rem; line-height: 1.1; font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.125rem; color: var(--text-muted); font-weight: 400; }
 
         /* =========================================
-           4. CONTENEDORES GLASSMORPHISM
-        ========================================= */
-        .glass-card { 
-            background: var(--glass-bg); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border); 
-            border-radius: 24px; 
-            box-shadow: var(--glass-shadow);
-        }
-        
-        .main-section { max-width: 960px; margin: 0 auto; padding: 0 20px 80px; }
-        .card-body { padding: 45px; }
-        .card-header-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 30px; border-bottom: 1px solid var(--glass-border); padding-bottom: 15px; }
+           4. CONTENEDORES & FORMULARIO
+           ========================================= */
+        .main-section { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
 
-        /* Formulario Grid */
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-        .full-width { grid-column: 1 / -1; }
-        
-        .input-box { display: flex; flex-direction: column; }
-        .input-box label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.8px; }
-        
-        .input-box select, .input-box input { 
-            background: var(--input-bg); border: 1px solid var(--glass-border); color: var(--text-main); 
-            padding: 16px; border-radius: 14px; font-size: 1rem; outline: none; transition: all 0.3s ease;
-            appearance: none; -webkit-appearance: none;
+        .glass-card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border-color); 
+            border-radius: var(--radius-lg); 
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
         }
+
+        .card-body { padding: 40px; }
+        .card-header-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 32px; letter-spacing: -0.5px; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .full-width { grid-column: 1 / -1; }
+
+        .input-box { display: flex; flex-direction: column; }
+        .input-box label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
+
+        .input-box select, .input-box input { 
+            background: var(--bg-input); border: 1px solid var(--border-color); color: var(--text-main); 
+            padding: 14px 16px; border-radius: var(--radius-sm); font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+            appearance: none; -webkit-appearance: none; font-family: inherit; box-shadow: var(--shadow-input);
+        }
+
         .select-wrapper { position: relative; }
         .select-wrapper::after {
-            content: "▾"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
-            color: var(--text-muted); pointer-events: none; font-size: 1.2rem;
+            content: "▾"; position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+            color: var(--text-muted); pointer-events: none; font-size: 1rem;
         }
-        .input-box select:focus, .input-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-glow); }
-        .input-box select:disabled { opacity: 0.4; cursor: not-allowed; }
+        .input-box select:focus, .input-box input:focus { border-color: var(--primary); }
+        .input-box select:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        .legal-note { font-size: 0.8rem; color: var(--primary); margin-top: 10px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+        .legal-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; font-weight: 400; display: flex; align-items: flex-start; gap: 6px; line-height: 1.4; }
 
-        /* Botones Principales */
+        /* Botón Principal */
         .btn-action {
-            background: var(--primary-gradient); color: #fff; width: 100%; padding: 18px; border-radius: 14px;
-            font-size: 1.1rem; font-weight: 800; border: none; cursor: pointer; margin-top: 25px;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            box-shadow: 0 10px 25px var(--primary-glow); transition: all 0.3s ease;
+            background: var(--primary); color: #fff; width: 100%; padding: 16px; border-radius: var(--radius-sm);
+            font-size: 1rem; font-weight: 600; border: none; cursor: pointer; margin-top: 32px;
+            display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s;
         }
-        .btn-action:hover { transform: translateY(-2px); box-shadow: 0 15px 35px var(--primary-glow); }
+        .btn-action:hover { background: var(--primary-hover); }
 
         /* =========================================
-           5. RESULTADOS UI
-        ========================================= */
-        .results-box { margin-top: 40px; padding-top: 35px; border-top: 1px solid var(--glass-border); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        
-        .price-card { background: var(--input-bg); padding: 25px; border-radius: 16px; border: 1px solid var(--glass-border); }
-        .price-card h4 { color: var(--text-muted); font-size: 0.9rem; font-weight: 600; }
-        .price-card .amount { font-size: 2.1rem; font-weight: 900; margin-top: 8px; }
-        .price-card.dealer .amount { text-decoration: line-through; color: #64748B; font-size: 1.7rem; }
-        
+           5. RESULTADOS (ESTILO FINANCIERO)
+           ========================================= */
+        .results-box { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border-color); display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .price-card { background: var(--bg-input); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+        .price-card h4 { color: var(--text-muted); font-size: 0.85rem; font-weight: 500; }
+        .price-card .amount { font-family: 'JetBrains Mono', monospace; font-size: 1.75rem; font-weight: 700; margin-top: 4px; letter-spacing: -1px; }
+        .price-card.dealer .amount { color: var(--text-muted); font-size: 1.25rem; font-weight: 500; text-decoration: line-through; }
+        .price-card.broker .amount { color: var(--text-main); }
+
         .savings-card { 
-            grid-column: 1 / -1; background: var(--success-bg); border: 1px solid var(--success-border); 
-            padding: 25px; border-radius: 18px; display: flex; align-items: center; gap: 20px; 
+            grid-column: 1 / -1; background: var(--success-bg); border: 1px solid var(--border-color); 
+            padding: 20px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: space-between;
         }
-        .savings-card .icon-wrap { background: var(--success); color: #000; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .savings-card h4 { color: var(--success); font-size: 0.95rem; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; }
-        .savings-card p { font-size: 2.1rem; font-weight: 900; color: var(--text-main); }
+        .savings-card-content { display: flex; align-items: center; gap: 12px; }
+        .savings-card h4 { color: var(--success); font-size: 0.85rem; font-weight: 600; }
+        .savings-card p { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--success); letter-spacing: -0.5px; }
 
-        .cta-group { grid-column: 1 / -1; display: flex; gap: 16px; margin-top: 10px; }
-        
-        .btn-wa { 
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #fff; flex: 1; padding: 16px; 
-            border-radius: 14px; border: none; font-size: 1rem; font-weight: 800; cursor: pointer; 
-            display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease;
-        }
-        .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35); }
+        .cta-group { grid-column: 1 / -1; display: flex; gap: 12px; margin-top: 16px; }
 
-        .btn-pay { 
-            background: linear-gradient(135deg, #635BFF 0%, #4A42E4 100%); color: #fff; flex: 1; padding: 16px; 
-            border-radius: 14px; border: none; font-size: 1rem; font-weight: 800; cursor: pointer; 
-            display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease;
+        .btn-wa, .btn-pay { 
+            flex: 1; padding: 14px; border-radius: var(--radius-sm); border: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; 
+            display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.2s; color: #fff;
         }
-        .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(99, 91, 255, 0.35); }
+        .btn-wa { background: var(--wa-color); }
+        .btn-pay { background: var(--stripe-color); }
+        .btn-wa:hover, .btn-pay:hover { opacity: 0.9; }
 
         /* =========================================
-           6. SECCIÓN DE PROCESO & TIMELINE
-        ========================================= */
-        .process-section { margin-top: 50px; }
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin-top: 25px; }
-        
-        .step-card { background: var(--input-bg); padding: 22px; border-radius: 16px; border: 1px solid var(--glass-border); position: relative; }
-        .step-badge { position: absolute; top: -12px; left: 20px; background: var(--primary); color: #fff; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
-        .step-card h4 { margin-top: 8px; margin-bottom: 8px; font-size: 1.05rem; font-weight: 800; }
-        .step-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; }
+           6. SECCIÓN PROCESO
+           ========================================= */
+        .process-section { margin-top: 32px; }
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 24px; }
 
-        .timeline-box { 
-            margin-top: 25px; background: rgba(255, 42, 75, 0.06); border: 1px dashed var(--primary); 
-            padding: 22px; border-radius: 16px; text-align: center; 
-        }
-        .timeline-box h3 { color: var(--primary); font-size: 1.4rem; font-weight: 900; }
-        .timeline-box p { color: var(--text-muted); font-size: 0.9rem; margin-top: 4px; }
+        .step-card { padding: 20px 0; position: relative; border-top: 1px solid var(--border-color); }
+        .step-badge { color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px; display: block; }
+        .step-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+        .step-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; }
 
-        /* BOTÓN FLOTANTE MÓVIL (WHATSAPP) */
+        .timeline-box { margin-top: 32px; padding-top: 24px; border-top: 1px dashed var(--border-color); text-align: center; }
+        .timeline-box h3 { font-size: 1.1rem; font-weight: 600; }
+        .timeline-box p { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
+
+        /* =========================================
+           7. FLOTANTE WHATSAPP & FOOTER
+           ========================================= */
         .floating-wa {
-            position: fixed; bottom: 25px; right: 25px; background: #25D366; color: #fff;
-            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5); z-index: 999; text-decoration: none; transition: all 0.3s ease;
+            position: fixed; bottom: 24px; right: 24px; background: var(--wa-color); color: #fff;
+            width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 999; text-decoration: none; transition: transform 0.2s;
         }
-        .floating-wa:hover { transform: scale(1.1); }
+        .floating-wa:hover { transform: scale(1.05); }
 
-        footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.9rem; }
+        footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-size: 0.85rem; }
 
-        /* Responsividad para Móviles (iOS/Android) */
+        /* =========================================
+           8. RESPONSIVE
+           ========================================= */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.3rem; }
-            .card-body { padding: 25px 20px; }
+            .hero h1 { font-size: 2.2rem; }
+            .card-body { padding: 24px 20px; }
             .form-grid, .results-box, .cta-group { grid-template-columns: 1fr; }
             .cta-group { flex-direction: column; }
+            .savings-card { flex-direction: column; align-items: flex-start; gap: 8px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Blobs decorativos de fondo -->
-    <div class="ambient-blob-1"></div>
-    <div class="ambient-blob-2"></div>
-
     <!-- Navegación -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">NEXT <span class="text-glow">PRO BROKER</span></div>
+            <div class="logo">NEXT <span>PRO BROKER</span></div>
             <button id="theme-toggle" class="theme-btn" aria-label="Cambiar Tema">
                 <!-- SVG Sol/Luna NATIVO -->
                 <svg id="theme-svg" class="svg-icon" viewBox="0 0 24 24">
@@ -244,7 +241,7 @@
             <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
             Cumplimiento Regulatorio Ley DGA 04-07
         </div>
-        <h1>Importación Automotriz Directa. <br><span class="text-glow">Ahorra hasta un 30% del Mercado.</span></h1>
+        <h1>Importación Automotriz Directa. <br><span>Ahorra hasta un 30% del Mercado.</span></h1>
         <p>Gestionamos la compra de tu vehículo en subastas privadas de EE. UU. (Manheim, Copart, IAAI) y la logística completa hacia República Dominicana.</p>
     </header>
 
@@ -290,7 +287,7 @@
                         
                         <!-- MODELO (API) -->
                         <div class="input-box">
-                            <label>Modelo <span id="loading-modelos" class="hidden" style="color:var(--primary); font-size:0.75rem;">(Conectando API...)</span></label>
+                            <label>Modelo <span id="loading-modelos" class="hidden" style="color:var(--primary); font-size:0.75rem;">(Conectando...)</span></label>
                             <div class="select-wrapper">
                                 <select id="modelo" disabled required>
                                     <option value="" disabled selected>Seleccione primero la marca...</option>
@@ -351,17 +348,15 @@
                     
                     <div class="price-card broker">
                         <h4>Costo NEXT PRO BROKER</h4>
-                        <p class="amount text-glow" id="precio-broker">$0</p>
+                        <p class="amount" id="precio-broker">$0</p>
                     </div>
 
                     <div class="savings-card">
-                        <div class="icon-wrap">
-                            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                        </div>
-                        <div>
+                        <div class="savings-card-content">
+                            <svg class="svg-icon" style="color: var(--success); width: 24px; height: 24px;" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                             <h4>Ahorro Estimado Retenido</h4>
-                            <p id="monto-ahorro">$0 USD</p>
                         </div>
+                        <p id="monto-ahorro">$0 USD</p>
                     </div>
 
                     <div class="cta-group">
@@ -370,10 +365,9 @@
                             Enviar a WhatsApp
                         </button>
                         <button type="button" class="btn-pay" onclick="window.open('https://buy.stripe.com/7sY5kD2Jne7E8j25Ladby08', '_blank');">
-    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-    Reservar Búsqueda ($200)
-</button>               
-                        </button>
+                            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                            Reservar Búsqueda ($200)
+                        </button>               
                     </div>
                 </div>
             </div>
@@ -387,25 +381,25 @@
                     
                     <div class="process-grid">
                         <div class="step-card">
-                            <div class="step-badge">1</div>
+                            <span class="step-badge">01 //</span>
                             <h4>Evaluación y Selección</h4>
                             <p>Analizamos reportes de condición (Condition Reports) en Manheim/Copart y seleccionamos unidades 2021+ verificadas.</p>
                         </div>
                         
                         <div class="step-card">
-                            <div class="step-badge">2</div>
+                            <span class="step-badge">02 //</span>
                             <h4>Adquisición en Subasta</h4>
                             <p>Ejecutamos la compra corporativa bajo la estructura de nuestra LLC, exentando impuestos de venta locales en EE. UU.</p>
                         </div>
 
                         <div class="step-card">
-                            <div class="step-badge">3</div>
+                            <span class="step-badge">03 //</span>
                             <h4>Logística y Puerto</h4>
                             <p>Traslado en grúa asegurada hacia el puerto de Miami y embarque marítimo directo hacia República Dominicana.</p>
                         </div>
 
                         <div class="step-card">
-                            <div class="step-badge">4</div>
+                            <span class="step-badge">04 //</span>
                             <h4>Aduanas y Entrega</h4>
                             <p>Gestión del pago de aranceles ante la DGA y entrega llave en mano en Santo Domingo con el ahorro prometido.</p>
                         </div>
@@ -422,7 +416,7 @@
 
     <!-- Botón Flotante Permanente de WhatsApp -->
     <a href="javascript:void(0)" onclick="cerrarVentaWA()" class="floating-wa" aria-label="Contacto Directo WhatsApp">
-        <svg class="svg-icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.55 0 8.25 3.7 8.25 8.25 0 4.55-3.7 8.25-8.25 8.25-1.5 0-2.97-.41-4.26-1.18l-.31-.18-3.16.83.84-3.08-.2-.32a8.216 8.216 0 0 1-1.26-4.32c0-4.55 3.7-8.25 8.25-8.25m4.53 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.98-.15.17-.3.19-.55.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.38.11-.51.11-.11.25-.29.38-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.59.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.11-.22-.18-.47-.31z"/></svg>
+        <svg class="svg-icon" style="width: 28px; height: 28px;" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.55 0 8.25 3.7 8.25 8.25 0 4.55-3.7 8.25-8.25 8.25-1.5 0-2.97-.41-4.26-1.18l-.31-.18-3.16.83.84-3.08-.2-.32a8.216 8.216 0 0 1-1.26-4.32c0-4.55 3.7-8.25 8.25-8.25m4.53 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.98-.15.17-.3.19-.55.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.38.11-.51.11-.11.25-.29.38-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.59.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.11-.22-.18-.47-.31z"/></svg>
     </a>
 
     <footer>
@@ -431,7 +425,7 @@
 
     <!-- LÓGICA JAVASCRIPT UNIFICADA -->
     <script>
-        // 1. CONTROL DE TEMA (DARK / LIGHT) CON PERSISTENCIA LOCAL
+        // 1. CONTROL DE TEMA (DARK / LIGHT)
         const themeBtn = document.getElementById('theme-toggle');
         const body = document.body;
 
@@ -508,7 +502,7 @@
             setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
         }
 
-        // 4. GENERACIÓN DE MENSAJE UNICODE PARA WHATSAPP (COMPATIBLE CON CUALQUIER DISPOSITIVO)
+        // 4. GENERACIÓN DE MENSAJE UNICODE PARA WHATSAPP
         function cerrarVentaWA() {
             const m = document.getElementById("marca").value || "No seleccionada";
             const modSel = document.getElementById("modelo");
