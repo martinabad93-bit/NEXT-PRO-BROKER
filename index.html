@@ -7,25 +7,25 @@
     
     <style>
         /* =========================================
-           1. SISTEMA DE DISEÑO ÉLITE (FINTECH LOOK)
+           1. SISTEMA DE DISEÑO ÉLITE (TECH BLUE LOOK)
            ========================================= */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
         :root {
-            /* MODO OSCURO (Default) */
-            --bg-main: #0A0A0A; 
-            --bg-card: #111111; 
-            --bg-input: #1A1A1A; 
-            --border-color: #2A2A2A; 
+            /* MODO OSCURO (Pro Tools Blue Theme) */
+            --bg-main: #0B1120; /* Fondo azul marino profundo (Deep Navy) */
+            --bg-card: #141C2F; /* Tarjetas elevadas */
+            --bg-input: #1E293B; /* Inputs claros */
+            --border-color: #334155; /* Bordes sutiles azulados */
             
-            --text-main: #FAFAFA;
-            --text-muted: #888888;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
             
-            --primary: #FF3B30; 
-            --primary-hover: #D62828;
+            --primary: #3B82F6; /* Azul Eléctrico (Tech Blue) */
+            --primary-hover: #2563EB;
             
-            --success: #32D74B;
-            --success-bg: rgba(50, 215, 75, 0.1);
+            --success: #10B981; /* Verde esmeralda para éxito/ahorro */
+            --success-bg: rgba(16, 185, 129, 0.1);
             
             --wa-color: #25D366;
             --stripe-color: #635BFF;
@@ -34,22 +34,22 @@
             --radius-md: 12px;
             --radius-lg: 20px;
             
-            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+            --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.3);
             --shadow-input: inset 0 1px 2px rgba(0,0,0,0.2);
         }
 
-        /* MODO CLARO (Editorial Clean) */
+        /* MODO CLARO (Pro Tools Light Blue) */
         body.light-mode {
-            --bg-main: #FAFAFA;
-            --bg-card: #FFFFFF;
-            --bg-input: #F4F4F5;
-            --border-color: #E4E4E7;
+            --bg-main: #F1F5F9; /* Gris azulado claro */
+            --bg-card: #FFFFFF; 
+            --bg-input: #F8FAFC; 
+            --border-color: #E2E8F0; 
             
-            --text-main: #09090B;
-            --text-muted: #71717A;
+            --text-main: #0F172A; /* Azul noche casi negro para texto */
+            --text-muted: #64748B;
             
-            --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
-            --shadow-input: inset 0 1px 2px rgba(0,0,0,0.02);
+            --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.05);
+            --shadow-input: inset 0 1px 2px rgba(15, 23, 42, 0.03);
         }
 
         /* Reset & Base */
@@ -227,7 +227,6 @@
         <div class="nav-container">
             <div class="logo">NEXT <span>PRO BROKER</span></div>
             <button id="theme-toggle" class="theme-btn" aria-label="Cambiar Tema">
-                <!-- SVG Sol/Luna NATIVO -->
                 <svg id="theme-svg" class="svg-icon" viewBox="0 0 24 24">
                     <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
                 </svg>
@@ -381,25 +380,25 @@
                     
                     <div class="process-grid">
                         <div class="step-card">
-                            <span class="step-badge">01 //</span>
+                            <span class="step-badge" style="color: var(--primary);">01 //</span>
                             <h4>Evaluación y Selección</h4>
                             <p>Analizamos reportes de condición (Condition Reports) en Manheim/Copart y seleccionamos unidades 2021+ verificadas.</p>
                         </div>
                         
                         <div class="step-card">
-                            <span class="step-badge">02 //</span>
+                            <span class="step-badge" style="color: var(--primary);">02 //</span>
                             <h4>Adquisición en Subasta</h4>
                             <p>Ejecutamos la compra corporativa bajo la estructura de nuestra LLC, exentando impuestos de venta locales en EE. UU.</p>
                         </div>
 
                         <div class="step-card">
-                            <span class="step-badge">03 //</span>
+                            <span class="step-badge" style="color: var(--primary);">03 //</span>
                             <h4>Logística y Puerto</h4>
                             <p>Traslado en grúa asegurada hacia el puerto de Miami y embarque marítimo directo hacia República Dominicana.</p>
                         </div>
 
                         <div class="step-card">
-                            <span class="step-badge">04 //</span>
+                            <span class="step-badge" style="color: var(--primary);">04 //</span>
                             <h4>Aduanas y Entrega</h4>
                             <p>Gestión del pago de aranceles ante la DGA y entrega llave en mano en Santo Domingo con el ahorro prometido.</p>
                         </div>
